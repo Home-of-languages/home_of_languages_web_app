@@ -4,7 +4,7 @@ from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash, usd
 
 from helpers import apology, login_required, lookup
 
@@ -165,4 +165,4 @@ for code in default_exceptions:
     application.errorhandler(code)(errorhandler)
     
 if __name__ == "__main__":
-   application.run(host='0.0.0.0', debug=true)
+   application.run(host='0.0.0.0')
