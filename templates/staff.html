@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <table class="table table-striped">
+         <thead>
+            <tr>
+              {% for key in people[0].keys() %}
+              <th scope="col">{{key}}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for person in people %}
+            <tr>
+              {% for data in person.values() %}
+              <th scope="col">{{data}}</th>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <div class="info">
+        <div class="service_name">
+            <span class="titles">Название:</span> {{ info[0]["service_name"] }}
+        </div>
+         <div class="slogan">
+            <span class="titles">Девиз:</span> {{ info[0]["slogan"] }}
+        </div>
+         <div class="mission">
+            <span class="titles">Миссия:</span> {{ info[0]["mission"] }}
+        </div>
+    </div>
+
+{% endblock %}
