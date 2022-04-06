@@ -6,6 +6,8 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from flask_mysqldb import MySQL
+
 from helpers import apology, login_required, lookup, usd
 
 # Configure application
@@ -13,7 +15,6 @@ application = Flask(__name__)
 
 # Ensure templates are auto-reloaded
 application.config["TEMPLATES_AUTO_RELOAD"] = True
-
 
 # Ensure responses aren't cached
 @application.after_request
@@ -33,9 +34,18 @@ application.config["SESSION_PERMANENT"] = False
 application.config["SESSION_TYPE"] = "filesystem"
 Session(application)
 
+#mysql = MySQL(application)
+#application.config['MYSQL_DATABASE_USER'] = 'u1643699_default'
+#application.config['MYSQL_DATABASE_PASSWORD'] = 'JgTWmdsK72Y0g069'
+#application.config['MYSQL_DATABASE_DB'] = 'u1643699_homeoflanguages'
+#application.config['MYSQL_DATABASE_HOST'] = 'localhost'
+#mysql.init_app(application)
+
 
 @application.route("/")
 def index():
+    #db = mysql.connection.cursor()
+    #db.execute("SELECT user, host FROM mysql.user")
     return render_template("index.html")
 
 @application.route("/about")
@@ -62,7 +72,7 @@ def login():
             return apology("must provide password", 403)
 
         # Redirect user to home page
-        return redirect("/")
+        return redirect("/schedule")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -165,4 +175,4 @@ for code in default_exceptions:
     application.errorhandler(code)(errorhandler)
     
 if __name__ == "__main__":
-   application.run(host='0.0.0.0', use_reloader=True)
+   application.run(use_reloader=True, debug=True)
